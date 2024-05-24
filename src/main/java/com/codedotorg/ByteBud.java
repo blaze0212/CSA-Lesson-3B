@@ -1,5 +1,7 @@
 package com.codedotorg;
 
+import java.util.HashMap;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -146,10 +148,21 @@ public class ByteBud {
      * @param inputText The user's input text.
      * @return A string containing the bot's response.
      */
-    private String getResponse(String inputText) {
-        
+    private HashMap<String, String> predefinedResponses = new HashMap<String, String>() {{
+        put("hello", "Hi there!");
+        put("how are you", "I'm a bot, I don't have feelings, but I'm functioning as expected!");
+        // Add more predefined phrases and responses here
+    }};
 
-        return "";
+    private String getResponse(String inputText) {
+        String lowerCaseInputText = inputText.toLowerCase();
+        String response = predefinedResponses.get(lowerCaseInputText);
+
+        if (response == null) {
+            response = "I'm sorry, I didn't understand that.";
+        }
+
+        return response;
     }
 
 }
